@@ -23,9 +23,8 @@ export const initMiddleware = (middleware) => {
 }
 
 export const corsOptionsDelegate = (req, callback) => {
-  const corsOptions = { origin: false, methods: ['POST', 'OPTIONS'] } 
+  const corsOptions = { origin: false, methods: ['POST', 'GET', 'OPTIONS'] } 
 
-  // console.log(req.headers['origin'])
   if (ALLOWED_CORS_ORIGINS.includes(req.headers['origin'])) {
     corsOptions.origin = true
   }
