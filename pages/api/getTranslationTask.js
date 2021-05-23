@@ -15,12 +15,14 @@ const getTranslationTask = async (req, res) => {
       })
     ))
     .then(res => res.json())
-    .then(res => {console.log(res.response); return res})
-    .then(res => res.response.data.items.map(item => ({
-        localeId: item.localeId,
-        progress: Math.floor(item.completedStringCount / res.response.data.totalStringCount * 100)
-      })
-    ))
+    .then(res => {
+        if (!res.response.data) {return []}
+        return res.response.data.items.map(item => ({
+          localeId: item.localeId,
+          progress: Math.floor(item.completedStringCount / res.response.data.totalStringCount * 100)
+        })
+      )
+})
 
   res.status(200).json({
     taskId: req.query.documentId,
