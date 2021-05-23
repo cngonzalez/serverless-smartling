@@ -1,5 +1,3 @@
-const ALLOWED_CORS_ORIGINS = ['http://localhost:3333', 'cs-demo.sanity.studio']
-
 export const authenticate = async (smartlingSecret) => (
   fetch('https://api.smartling.com/auth-api/v2/authenticate', {
     method: 'POST',
@@ -25,7 +23,7 @@ export const initMiddleware = (middleware) => {
 export const corsOptionsDelegate = (req, callback) => {
   const corsOptions = { origin: false, methods: ['POST', 'GET', 'OPTIONS'] } 
 
-  if (ALLOWED_CORS_ORIGINS.includes(req.headers['origin'])) {
+  if (process.env.NEXT_PUBLIC_ALLOWED_CORS_ORIGINS.includes(req.headers['origin'])) {
     corsOptions.origin = true
   }
 
