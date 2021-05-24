@@ -21,13 +21,13 @@ export const initMiddleware = (middleware) => {
 }
 
 export const corsOptionsDelegate = (req, callback) => {
-  const corsOptions = { origin: true, methods: ['POST', 'GET', 'OPTIONS'] } 
-
-  if (process.env.NEXT_PUBLIC_ALLOWED_CORS_ORIGINS.includes(req.headers['origin'])) {
-    corsOptions.origin = true
-  } else if (req.headers['origin'].match('sanity.build')) {
-    corsOptions.origin = true
-  }
-
+  const corsOptions = { origin: true, methods: ['POST', 'GET', 'PUT', 'DELETE', 'OPTIONS'] } 
   callback(null, corsOptions) 
+
+//   if (process.env.NEXT_PUBLIC_ALLOWED_CORS_ORIGINS.includes(req.headers['origin'])) {
+//     corsOptions.origin = true
+//   } else if (req.headers['origin'].match('sanity.build')) {
+//     corsOptions.origin = true
+//   }
+
 }
